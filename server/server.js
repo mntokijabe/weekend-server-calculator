@@ -8,13 +8,16 @@ app.use(express.static('server/public'));
 
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
+let calcHistArray = [{firstValue:3, operand:'x',secondValue:4, result:12}]
 
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
-
+app.get('/calculations', (req, res) => {
+  console.log('request for calc history received')
+  res.send(calcHistArray);
+})
 // POST /calculations
 
 
