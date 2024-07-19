@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-let PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5001;
 
 app.use(express.json());
 app.use(express.static('server/public'));
+
 
 // Global variable that will contain all of the
 // calculation objects:
@@ -15,6 +16,11 @@ let calculations = []
 // GET /calculations
 
 // POST /calculations
+
+
+
+
+
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
