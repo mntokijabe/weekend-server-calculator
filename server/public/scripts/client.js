@@ -7,19 +7,30 @@ getCalculations();
 
 function getCalculations() {
  // event.preventDefault()
+ console.log('sending request for calcs')
     axios({
         method: 'GET',
         url: '/calculations',
     })
     .then((response) => {
+        const calcList = response.data.calcHistArray;
+        const recentCalc = response.data.currentCalc;
         console.log('received calc history list')
                document.querySelector('#resultHistory').innerHTML = ``;
-        const calcList = response.data;
+
+          console.log('second array is',recentCalc)
+        if(calcList.length > 0){
             for (let calcs of calcList){
                document.querySelector('#resultHistory').innerHTML += `
                <li>${calcs.valueOne} ${calcs.operation} ${calcs.valueTwo} = ${calcs.result}</li> 
                 `
              }
+            // display recent result
+                document.querySelector('#lastResult').innerHTML = `
+                <li>${recentCalc.valueOne} ${recentCalc.operation} ${recentCalc.valueTwo} = ${recentCalc.result}</li> 
+                 `
+        }
+            
     })
 }
 
@@ -63,5 +74,5 @@ function times(event){
 function divide(event){
     event.preventDefault();
     console.log('adding');
-    operId = '+'
+    operId = '/'
 }

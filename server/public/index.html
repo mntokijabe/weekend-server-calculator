@@ -13,21 +13,23 @@
       <input data-testid="numOne" id="firstNum" placeholder="First Number">
       <button onClick="plus(event)">+</button>
       <button onClick="minus(event)">-</button>
-      <button onClick="times()">*</button>
-      <button onClick="divie()">/</button>
+      <button onClick="times(event)">*</button>
+      <button onClick="divide(event)">/</button>
       <input data-testid="numTwo" id="secondNum" placeholder="Second Number">
       <button onClick="newCalc(event)">=</button>
       <button onClick="clearForm">C</button>
     </form>
 
-    <section data-testid="recentResult">
-      <ul>
+    <section data-testid="recentResult" >
+      <ul id="lastResult">
       <!-- The most recent calculation result goes here. -->
       </ul>
     </section>
 
-    <section data-testid="resultHistory" id="resultHistory">
+    <section data-testid="resultHistory">
+      <ul id="resultHistory">
       <!-- The list of calculation results goes here. -->
+      </ul>
     </section>
   </body>
 </html>

@@ -1,33 +1,32 @@
 const express = require('express');
 const app = express();
 let PORT = process.env.PORT || 5001;
-let currentCalc = []
+
 app.use(express.json());
 app.use(express.static('server/public'));
 
 
 // Global variable that will contain all of the
 // calculation objects:
-let calcHistArray = [{valueOne:3, operation:'x',valueTwo:4, result:12}]
+let calcHistArray = []
+let currentCalc = [];
+let combinedResult = [];
 
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
 app.get('/calculations', (req, res) => {
-  console.log('request for calc history received')
-  res.send(calcHistArray);
+  combinedResult = {calcHistArray,currentCalc}
+  res.send(combinedResult);
 })
 // POST /calculations
 
 app.post ('/calculations', (req, res) => {
   currentCalc = req.body;  
   let currentResult = performCalc(currentCalc);  
-let array = {result: currentResult};  
-console.log('currentCalc is type ',typeof currentCalc) 
   currentCalc.result = currentResult  
   calcHistArray.push(currentCalc)
-  console.log(calcHistArray)
   res.sendStatus(201);
 })
 
