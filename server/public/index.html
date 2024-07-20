@@ -9,7 +9,7 @@
   <body>
     <h1>Server-Side Calculator</h1>
 
-    <form data-testid="calculator">
+    <form data-testid="calculator" id="mainCalc">
       <input data-testid="numOne" id="firstNum" placeholder="First Number">
       <button onClick="plus(event)">+</button>
       <button onClick="minus(event)">-</button>
@@ -21,12 +21,14 @@
     </form>
 
     <section data-testid="recentResult" >
+      <h3>Last Calculation</h3>
       <ul id="lastResult">
       <!-- The most recent calculation result goes here. -->
       </ul>
     </section>
 
     <section data-testid="resultHistory">
+      <h3>Calculation History</h3>
       <ul id="resultHistory">
       <!-- The list of calculation results goes here. -->
       </ul>
