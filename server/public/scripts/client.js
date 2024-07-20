@@ -52,7 +52,8 @@ console.log('sending values')
     })
 .then((response) => {
 console.log('response of Post received')
-    getCalculations();
+    getCalculations()
+    clearForm();
 })
 }
 
@@ -75,4 +76,8 @@ function divide(event){
     event.preventDefault();
     console.log('adding');
     operId = '/'
+}
+
+function clearForm() {
+    document.querySelector('#mainCalc').reset()
 }
