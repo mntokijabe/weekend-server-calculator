@@ -1,14 +1,14 @@
 const express = require('express');
 const app = express();
 let PORT = process.env.PORT || 5001;
-
+let currentCalc = []
 app.use(express.json());
 app.use(express.static('server/public'));
 
 
 // Global variable that will contain all of the
 // calculation objects:
-let calcHistArray = [{firstValue:3, operand:'x',secondValue:4, result:12}]
+let calcHistArray = [{valueOne:3, operation:'x',valueTwo:4, result:12}]
 
 
 // Here's a wonderful place to make some routes:
@@ -20,10 +20,37 @@ app.get('/calculations', (req, res) => {
 })
 // POST /calculations
 
+app.post ('/calculations', (req, res) => {
+  currentCalc = req.body;  
+  let currentResult = performCalc(currentCalc);  
+let array = {result: currentResult};  
+console.log('currentCalc is type ',typeof currentCalc) 
+  currentCalc.result = currentResult  
+  calcHistArray.push(currentCalc)
+  console.log(calcHistArray)
+  res.sendStatus(201);
+})
 
 
-
-
+function performCalc(array){
+  let result;
+  switch (array.operation) {
+    case "+":
+      result = Number(array.valueOne) + Number(array.valueTwo);
+      break;
+    case "-":
+      result = Number(array.valueOne) - Number(array.valueTwo);
+      break;
+    case "*":
+      result = Number(array.valueOne) * Number(array.valueTwo);
+      break;
+    case "/":
+      result = Number(array.valueOne) / Number(array.valueTwo);
+      break;
+  }
+  console.log ('result of operation is ',result)
+  return result
+}
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
