@@ -22,6 +22,12 @@ button {
     background-color: yellow;
 }
 
+#calcBody {
+    display: inline-flex;
+    flex-direction: row;
+
+}
+
 #lastResult {
     font-size: 20px;
     padding:.5em;
@@ -30,3 +36,10 @@ button {
  #allResults {
     padding: 0.5em
  }
+
+#operatorButtons {
+    display: inline-flex;
+    flex-direction: column;
+    
+    padding-left:20px
+}
