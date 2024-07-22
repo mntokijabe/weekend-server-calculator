@@ -1,55 +1,72 @@
 const express = require('express');
 const app = express();
-let PORT = process.env.PORT || 5001;
+let PORT = process.env.PORT || 5002;
 
 app.use(express.json());
 app.use(express.static('server/public'));
 
-
 // Global variable that will contain all of the
 // calculation objects:
-let calcHistArray = []
-let currentCalc = [];
-let combinedResult = [];
+let calculations = []
+let recentCalc = []
 
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
-app.get('/calculations', (req, res) => {
-  combinedResult = {calcHistArray,currentCalc}
-  res.send(combinedResult);
+
+app.get ('/calculations', (req, res) => {
+  console.log('received getCalc request', req.body);
+  res.send(calculations)
 })
+
+app.get ('/recent', (req, res) => {
+  console.log('received request for recent calc');
+  res.send(recentCalc)
+})
+
 // POST /calculations
 
 app.post ('/calculations', (req, res) => {
-  currentCalc = req.body;  
-  let currentResult = performCalc(currentCalc);  
-  currentCalc.result = currentResult  
-  calcHistArray.push(currentCalc)
-  res.sendStatus(201);
+  let calcData = req.body
+  let result = calculation(calcData);
+  calcData.result = result;
+  console.log('calcData is',calcData)
+  recentCalc = calcData
+  console.log('recentcalc is',recentCalc)
+  calculations.push(calcData);
+  console.log('calculations is' ,calculations)
+  res.sendStatus(201)
 })
 
 
-function performCalc(array){
+
+function calculation(array){
   let result;
-  switch (array.operation) {
+  let numOne = Number(array.numOne);
+  let numTwo = Number(array.numTwo);
+  switch (array.operator){
     case "+":
-      result = Number(array.valueOne) + Number(array.valueTwo);
+      result = numOne + numTwo;
       break;
     case "-":
-      result = Number(array.valueOne) - Number(array.valueTwo);
+      result = numOne - numTwo;
       break;
     case "*":
-      result = Number(array.valueOne) * Number(array.valueTwo);
+      result = numOne * numTwo;
       break;
     case "/":
-      result = Number(array.valueOne) / Number(array.valueTwo);
-      break;
+      result = numOne / numTwo;
+      break; 
   }
-  console.log ('result of operation is ',result)
-  return result
+  console.log('the result is',result);
+  return result;
 }
+
+
+
+
+
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:

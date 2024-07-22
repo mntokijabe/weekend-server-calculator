@@ -9,29 +9,23 @@
   <body>
     <h1>Server-Side Calculator</h1>
 
-    <form data-testid="calculator" id="mainCalc">
-      <input data-testid="numOne" id="firstNum" placeholder="First Number">
-      <button onClick="plus(event)">+</button>
-      <button onClick="minus(event)">-</button>
-      <button onClick="times(event)">*</button>
-      <button onClick="divide(event)">/</button>
-      <input data-testid="numTwo" id="secondNum" placeholder="Second Number">
-      <button onClick="newCalc(event)">=</button>
-      <button onClick="clearForm">C</button>
+    <form data-testid="calculator" id="calculate">
+      <input data-testid="numOne" id="firstVal" placeholder="First Number">
+      <button onClick="addOp(event)">+</button>
+      <button onClick="subOp(event)">-</button>
+      <button onClick="timesOp(event)">*</button>
+      <button onClick="divOp(event)">/</button>
+      <input data-testid="numTwo" id="secondVal" placeholder="Second Number">
+      <button onClick="performCalculation(event)">=</button>
+      <button onClick="clearInput(event)">C</button>
     </form>
 
-    <section data-testid="recentResult" >
-      <h3>Last Calculation</h3>
-      <ul id="lastResult">
+    <section data-testid="recentResult" id="lastResult">
       <!-- The most recent calculation result goes here. -->
-      </ul>
     </section>
 
-    <section data-testid="resultHistory">
-      <h3>Calculation History</h3>
-      <ul id="resultHistory">
+    <section data-testid="resultHistory" id="allResults">
       <!-- The list of calculation results goes here. -->
-      </ul>
     </section>
   </body>
 </html>
