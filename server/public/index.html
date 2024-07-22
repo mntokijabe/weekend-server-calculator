@@ -14,49 +14,50 @@
         <input data-testid="numOne" id="firstVal" placeholder="First Number">
         <input data-testid="numTwo" id="secondVal" placeholder="Second Number">
       </form>
-      <section id="calcBody">
-        <div id="numberButtons">
-          <div id="button-row1">
-            <button id="seven" onClick="numButton(event, 7)">7</button>
-            <button id="eight" onClick="numButton(event, 8)">8</button>
-            <button id="nine" onClick="numButton(event, 9)">9</button>
-          </div>
-          <div id="button-row2">
-            <button id="four" onClick="numButton(event, 4)">4</button>
-            <button id="five" onClick="numButton(event, 5)">5</button>
-            <button id="six" onClick="numButton(event, 6)">6</button>
-          </div>
-          <div id="button-row3">
-            <button id="one" onClick="numButton(event, 1)">1</button>
-            <button id="two" onClick="numButton(event, 2)">2</button>
-            <button id="three" onClick="numButton(event, 3)">3</button>
-          </div>
-          <div id="button-row4">
-            <button id="zero" onClick="numButton(event, 0)">0</button>
-            <button id="decimal" onClick="decButton(event, '.')">.</button>
-            <button id="negative" onClick="negButton(event, 3)">-</button>
-          </div>
-        </div>
-        <div id="operatorButtons">
-          <div id="justSigns">
-            <button onClick="addOp(event)">+</button>
-            <button onClick="subOp(event)">-</button>
-            <button onClick="timesOp(event)">*</button>
-            <button onClick="divOp(event)">/</button>
-          </div>
-          <div id="operands">
-            <button onClick="performCalculation(event)">=</button>
-            <button onClick="clearInput(event)">C</button>
+      <section id="display">
+          this is the disp7lay
+      </section>
+      <section class="rows"id="calcBody"  >
+        <div id="numberButtons" >
+            <div class="rows" id="operands">
+              <button onClick="clearInput(event)">C</button>
+              <button id="clearAll" onClick="clearInput(event)">C Hist</button>
+              <button id="equals" onClick="performCalculation(event)">=</button>
+            </div>
+            <div class="rows" id="button-row1">
+              <button id="seven" onClick="numButton(event, 7)">7</button>
+              <button id="eight" onClick="numButton(event, 8)">8</button>
+              <button id="nine" onClick="numButton(event, 9)">9</button>
+              <button class="operatorButtons" onClick="addOp(event)">+</button>
+            </div>
+            <div class="rows" id="button-row2">
+              <button id="four" onClick="numButton(event, 4)">4</button>
+              <button id="five" onClick="numButton(event, 5)">5</button>
+              <button id="six" onClick="numButton(event, 6)">6</button>
+              <button class="operatorButtons" onClick="subOp(event)">-</button>
+            </div>
+            <div class="rows" id="button-row3">
+              <button id="one" onClick="numButton(event, 1)">1</button>
+              <button id="two" onClick="numButton(event, 2)">2</button>
+              <button id="three" onClick="numButton(event, 3)">3</button>
+              <button class="operatorButtons" onClick="timesOp(event)">*</button>
+            </div>
+            <div class="rows" id="button-row4">
+              <button id="zero" onClick="numButton(event, 0)">0</button>
+              <button id="decimal" onClick="decButton(event, '.')">.</button>
+              <button id="negative" onClick="negButton(event, 3)">(-)</button>
+              <button class="operatorButtons" onClick="divOp(event)">/</button>
+            </div>
           </div>
       </section>
 
-    <section data-testid="recentResult" id="lastResult">
-      <!-- The most recent calculation result goes here. -->
-    </section>
+      <section data-testid="recentResult" id="lastResult">
+        <!-- The most recent calculation result goes here. -->
+      </section>
 
-    <section data-testid="resultHistory" id="allResults">
-      <!-- The list of calculation results goes here. -->
-    </section>
+      <section data-testid="resultHistory" id="allResults">
+        <!-- The list of calculation results goes here. -->
+      </section>
     </main>
   </body>
 </html>

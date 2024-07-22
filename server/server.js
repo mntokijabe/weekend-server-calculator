@@ -16,12 +16,10 @@ let recentCalc = []
 // GET /calculations
 
 app.get ('/calculations', (req, res) => {
-  console.log('received getCalc request', req.body);
   res.send(calculations)
 })
 
 app.get ('/recent', (req, res) => {
-  console.log('received request for recent calc');
   res.send(recentCalc)
 })
 
@@ -31,11 +29,8 @@ app.post ('/calculations', (req, res) => {
   let calcData = req.body
   let result = calculation(calcData);
   calcData.result = result;
-  console.log('calcData is',calcData)
   recentCalc = calcData
-  console.log('recentcalc is',recentCalc)
   calculations.push(calcData);
-  console.log('calculations is' ,calculations)
   res.sendStatus(201)
 })
 
@@ -59,7 +54,6 @@ function calculation(array){
       result = numOne / numTwo;
       break; 
   }
-  console.log('the result is',result);
   return result;
 }
 

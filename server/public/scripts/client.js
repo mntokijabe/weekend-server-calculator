@@ -4,17 +4,6 @@ getCalculations()
 
 let operId  //holds the operation identifier
 
-function getCalculationsTwo() {
-    axios({
-        method: 'GET',
-        url: '/calculations'
-    })
-    .then((response) => {
-        let history = response.data
-        recentResult();
-        showHistory(history);
-    })
-}
 
 function getCalculations() {
     axios({
@@ -43,50 +32,29 @@ function getCalculations() {
 
 function performCalculation(event) {
     event.preventDefault();
-    let numOne = Number(document.querySelector('#firstVal').value)
-    let numTwo = Number(document.querySelector('#secondVal').value) 
-    let calcValues = {
-        numOne: numOne,
-        numTwo: numTwo,
-        operator: operId
+    
+    let numOne = document.querySelector('#firstVal').value
+    let numTwo = document.querySelector('#secondVal').value 
+    if(checkValues(numOne,numTwo)){
+        let calcValues = {
+            numOne: numOne,
+            numTwo: numTwo,
+            operator: operId
+        }
+        clearInput();
+        console.log('sending the values', calcValues)
+        axios({
+            method: 'POST',
+            url: '/calculations',
+            data: calcValues
+        })
+        .then((response) => {
+            console.log('calc response received',response.data)
+            getCalculations()
+        })
     }
-    clearInput();
-    console.log('sending the values', calcValues)
-    axios({
-        method: 'POST',
-        url: '/calculations',
-        data: calcValues
-    })
-    .then((response) => {
-        console.log('calc response received',response.data)
-        getCalculations()
-    })
 }
 
-function recentResult() {
-    axios({
-        method: 'GET',
-        url: '/recent'
-    })
-    .then((response) => {
-        let recResult = response.data;
-        console.log('recent result is',recResult)
-        if(recResult.numOne != null){
-            document.querySelector('#lastResult').innerHTML = `
-            ${recResult.numOne} ${recResult.operator} ${recResult.numTwo} = ${recResult.result}
-            `
-        }
-        })
-}  // end of recentResult
-function showHistory (history) {
-        document.querySelector('#allResults').innerHTML = ``
-        console.log('history is' ,history)
-        for (let i = 0; i < history.length; i++){
-            document.querySelector('#allResults').innerHTML += `
-            <li>${history[i].numOne} ${history[i].operator} ${history[i].numTwo} = ${history[i].result}</li>
-            `  
-        }
-    } //end of resultHistory
 
 function addOp(event) {
     event.preventDefault()
@@ -106,5 +74,19 @@ function divOp(event){
 }
 function clearInput(){
     document.querySelector("#calculate").reset()
-    console.log(`the input values are `)
+}
+function checkValues(numOne,numTwo){
+    let statement = true
+    if(typeof numOne === 'undefined' || typeof numTwo === 'undefined'){
+        window.alert('You must enter both numbers');
+        console.log('empty')
+        statement = false;
+    }
+    if(isNaN(Number(numOne)) || isNaN(Number(numTwo))){
+        window.alert('All values must be numbers');
+        console.log('not a number')
+        statement= false
+    }
+    console.log(statement)
+    return statement
 }
