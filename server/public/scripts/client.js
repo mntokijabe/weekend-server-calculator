@@ -73,7 +73,7 @@ function recentResult() {
         console.log('recent result is',recResult)
         if(recResult.numOne != null){
             document.querySelector('#lastResult').innerHTML = `
-            <li>${recResult.numOne} ${recResult.operator} ${recResult.numTwo} = ${recResult.result}</li>
+            ${recResult.numOne} ${recResult.operator} ${recResult.numTwo} = ${recResult.result}
             `
         }
         })

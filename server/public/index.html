@@ -5,20 +5,21 @@
     <title>Server-Side Calculator</title>    
     <script defer src="scripts/axios.js"></script>
     <script defer src="scripts/client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1>Server-Side Calculator</h1>
-
-    <form data-testid="calculator" id="calculate">
-      <input data-testid="numOne" id="firstVal" placeholder="First Number">
-      <button onClick="addOp(event)">+</button>
-      <button onClick="subOp(event)">-</button>
-      <button onClick="timesOp(event)">*</button>
-      <button onClick="divOp(event)">/</button>
-      <input data-testid="numTwo" id="secondVal" placeholder="Second Number">
-      <button onClick="performCalculation(event)">=</button>
-      <button onClick="clearInput(event)">C</button>
-    </form>
+    <main>
+      <form data-testid="calculator" id="calculate">
+        <input data-testid="numOne" id="firstVal" placeholder="First Number">
+        <button onClick="addOp(event)">+</button>
+        <button onClick="subOp(event)">-</button>
+        <button onClick="timesOp(event)">*</button>
+        <button onClick="divOp(event)">/</button>
+        <input data-testid="numTwo" id="secondVal" placeholder="Second Number">
+        <button onClick="performCalculation(event)">=</button>
+        <button onClick="clearInput(event)">C</button>
+      </form>
 
     <section data-testid="recentResult" id="lastResult">
       <!-- The most recent calculation result goes here. -->
@@ -27,5 +28,6 @@
     <section data-testid="resultHistory" id="allResults">
       <!-- The list of calculation results goes here. -->
     </section>
+    </main>
   </body>
 </html>
